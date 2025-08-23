@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\jellypotplayer]
+@="URL:jellypotplayer protocol"
+"URL Protocol"=""
+[HKEY_CLASSES_ROOT\jellypotplayer\shell]
+[HKEY_CLASSES_ROOT\jellypotplayer\shell\open]
+[HKEY_CLASSES_ROOT\jellypotplayer\shell\open\command]
+@="powershell  -File D:\\Jellyfin-Potplayer\\potplayer.ps1 %1"
