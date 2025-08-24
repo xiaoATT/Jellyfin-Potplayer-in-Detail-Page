@@ -2,7 +2,7 @@
 
 # Jellyfin with Potplayer in Detail Page
 
-本项目基于 [tccoin/Jellyfin-Potplayer](https://github.com/tccoin/Jellyfin-Potplayer) 二次开发，保留Jellyfin原本的播放按键，在Jellyfin的视频的详情页增加按钮使用potplayer播放。
+本项目基于 [tccoin/Jellyfin-Potplayer](https://github.com/tccoin/Jellyfin-Potplayer) 二次开发，保留Jellyfin原本的播放按键，在Jellyfin的视频的详情页增加按钮使用potplayer播放。同时增加获取当前播放进度和上传新的播放进度的功能
 
 ## 特性
 - 仅在 Jellyfin 详情页插入 PotPlayer 播放按钮
