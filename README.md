@@ -9,6 +9,8 @@
 - 将 Jellyfin 路径自动转换为局域网 UNC 路径，适配 SMB/NAS
   - 路径转换示例：/jellyfin-video/test.mp4  转换为：\\\\192.168.1.2\\nas-video\\test.mp4
 - 将注册表url名称修改为 jellypotplayer，避免与原potplayer冲突
+- 打开时自动获取当前视频的播放进度，并打开potplayer到当前进度
+- 关闭播放器时自动上报播放结束信息。上报和使用的播放信息都是jellyfin-web的客户端。因此会与网页的播放信息同步
 
 ## 安装与使用
 1. **下载本仓库代码**
@@ -24,6 +26,10 @@
 6. **安装 Tampermonkey 并新建脚本，复制粘贴 userscript.js内容并保存**
 7. **在 Jellyfin 网页端详情页点击 PotPlayer 按钮即可调用本地播放器**
 
+## 其他说明
+
+* 在.reg中的最后 powershell 命令中添加 -NoExit 参数保持窗口打开，便于调试
+
 ## 鸣谢
-- 本项目基于 [tccoin/Jellyfin-Potplayer](https://github.com/tccoin/Jellyfin-Potplayer) 开发，感谢原作者的开源！
+- 本项目基于 [tccoin/Jellyfin-Potplayer](https://github.com/tccoin/Jellyfin-Potplayer) 开发，感谢原作者的开源贡献！
 
