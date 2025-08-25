@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Jellyfin with Potplayer in Detail Page
-// @version      0.2
+// @version      0.3
 // @description  play video with Potplayer in Detail Page and upload playback info
 // @author       xiaoA
 // @include      http://192.168.1.2:8096/web/*
@@ -21,12 +21,23 @@
       if (r.Path) {
         console.log(itemid)
         console.log(r);
-        // let path = r.Path.replace(/\\/g, '/');
-        //path = path.replace('D:', 'Z:');
         let path = r.Path;
-        // 先替换前缀，这把更换为本地的实际地址
-        path = path.replace('/jellyfin-video/', '//192.168.1.2/nas-video/');
-        // 再把剩下的 / 替换为 \
+        console.log(path);
+        // 枚举表：Jellyfin物理路径前缀 => 协议映射前缀
+        const pathMap = [
+          { from: '/jellyfin-video1', to: '/nas-video1' },
+          { from: '/jellyfin-video1', to: '/nas-video2' },
+        ];
+        // 匹配映射
+        let matched = pathMap.find(m => path.startsWith(m.from));
+        console.log(matched);
+        if (matched) {
+          console.log(path);
+          // 拼接 //192.168.1.2/ + 映射前缀 + 剩余路径
+          path = `//192.168.1.2${matched.to}${path.substring(matched.from.length)}`;
+          console.log(path);
+        }
+        // 再把剩下的 \\ 替换为 /
         path = path.replace(/\\/g, '/');
         // 获取当前播放进度 时间为 s * 10**7
         let curTime = r.UserData.PlaybackPositionTicks;
