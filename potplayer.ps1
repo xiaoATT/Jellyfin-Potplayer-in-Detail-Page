@@ -132,7 +132,7 @@ if($debug) {
 function Report-PlayPosition($jellyfin_url, $item_id, $play_session_id, $cur_time) {
     $body = @{ 'ItemId' = $item_id; 'PlaySessionId' = $play_session_id }
     try {
-        $response = Invoke-WebRequest -Uri "$jellyfin_url/Sessions/Playing" -Headers $headers -Method POST -Body ($body | ConvertTo-Json) -ContentType 'application/json'
+        $response = Invoke-WebRequest -UseBasicParsing -Uri "$jellyfin_url/Sessions/Playing" -Headers $headers -Method POST -Body ($body | ConvertTo-Json) -ContentType 'application/json'
         if($debug) {
             Write-Host "开始播放 HTTP 状态码: $($response.StatusCode)"
         }
@@ -150,7 +150,7 @@ function Report-PlayStopped($jellyfin_url, $item_id, $play_session_id, $cur_time
     $ticks = [math]::Floor($cur_time * 10000000)
     $body = @{ 'PositionTicks' = $ticks; 'ItemId' = $item_id; 'PlaySessionId' = $play_session_id }
     try {
-        $response = Invoke-WebRequest -Uri "$jellyfin_url/Sessions/Playing/Stopped" -Headers $headers -Method POST -Body ($body | ConvertTo-Json) -ContentType 'application/json'
+        $response = Invoke-WebRequest -UseBasicParsing -Uri "$jellyfin_url/Sessions/Playing/Stopped" -Headers $headers -Method POST -Body ($body | ConvertTo-Json) -ContentType 'application/json'
         if($debug) {
             Write-Host "上报播放停止 HTTP 状态码: $($response.StatusCode)"
         }
